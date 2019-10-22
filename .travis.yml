@@ -1,5 +1,10 @@
 language: node_js
-node_js: "lts/*"
+node_js:
+  - "10"
+  - "lts/*"
+os:
+  - "linux"
+  - "windows"
 cache:
   directories:
     - "$HOME/.npm"
