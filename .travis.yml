@@ -1,6 +1,5 @@
 language: node_js
 node_js:
-  - "10"
   - "lts/*"
 os:
   - "linux"
@@ -25,23 +24,13 @@ jobs:
     - stage: compile
       script:
         - npm run type-check
-      node_js:
-        - "lts/*"
       os:
         - "linux"
     - stage: test
-      node_js:
-        - "10"
-        - "lts/*"
-      os:
-        - "linux"
-        - "windows"
       script:
         - npm run test
         - npm run build
     - stage: analyse
-      node_js:
-        - "lts/*"
       os:
         - "linux"
       script:
@@ -50,8 +39,6 @@ jobs:
         - npm run coverage
         - sonar-scanner
     - stage: deploy
-      node_js:
-        - "lts/*"
       os:
         - "linux"
       script: skip
