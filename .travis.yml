@@ -19,8 +19,8 @@ jobs:
         - npm run type-check
       node_js:
         - "lts/*"
-        os:
-          - "linux"
+      os:
+        - "linux"
     - stage: test
       script:
         - npm run test
