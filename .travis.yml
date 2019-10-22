@@ -10,20 +10,45 @@ cache:
     - "$HOME/.npm"
     - "$HOME/travis/.sonar/cache"
     - ".scannerwork"
+    - "${TRAVIS_HOME}/.sonarscanner/"
+
+stages:
+  - lint
+  - test
+  - analyse
+  - deploy
+    if: branch = master
 
 jobs:
   include:
-    - stage: test
+    - name: lint
+      node_js:
+        - "lts/*"
+        os:
+          - "linux"
       script:
         - npm run type-check
-        - npm run coverage
+    - name: test
+      script:
+        - npm run test
         - npm run build
+    - name: analyse
+      node_js:
+        - "lts/*"
+        os:
+          - "linux"
+      script:
+        - npm run build
+        - npm run bundlesize
+        - npm run coverage
+        - sonar-scanner
     - stage: deploy
-      script: skip
       node_js:
         - "lts/*"
       os:
         - "linux"
+      script:
+        - npm run build
       deploy:
         skip_cleanup: true
         provider: npm
@@ -44,10 +69,3 @@ addons:
     organization: $SONAR_ORGANIZATION
     token:
       secure: $SONAR_TOKEN
-
-#script:
-#  - npm run type-check
-#  - npm run coverage
-#  - npm run build
-#  - npm run bundlesize
-#  - sonar-scanner
