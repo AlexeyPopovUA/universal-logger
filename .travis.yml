@@ -11,6 +11,7 @@ cache:
     - "$HOME/travis/.sonar/cache"
     - ".scannerwork"
     - "${TRAVIS_HOME}/.sonarscanner/"
+    - "${TRAVIS_HOME}/.npm/"
 
 stages:
   - compile
@@ -29,6 +30,12 @@ jobs:
       os:
         - "linux"
     - stage: test
+      node_js:
+        - "10"
+        - "lts/*"
+      os:
+        - "linux"
+        - "windows"
       script:
         - npm run test
         - npm run build
