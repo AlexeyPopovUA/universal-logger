@@ -12,36 +12,25 @@ cache:
     - ".scannerwork"
     - "${TRAVIS_HOME}/.sonarscanner/"
 
-#stages:
-#  - lint
-#  - test
-#  - analyse
-#  - deploy
-#    if: branch = master
+stages:
+  - compile
+  - test
+  - name: deploy
+    if: branch = master
 
 jobs:
   include:
-#    - name: lint
-#      node_js:
-#        - "lts/*"
-#        os:
-#          - "linux"
-#      script:
-#        - npm run type-check
+    - name: compile
+      script:
+        - npm run type-check
+      node_js:
+        - "lts/*"
+        os:
+          - "linux"
     - name: test
       script:
         - npm run test
         - npm run build
-#    - name: analyse
-#      node_js:
-#        - "lts/*"
-#        os:
-#          - "linux"
-#      script:
-#        - npm run build
-#        - npm run bundlesize
-#        - npm run coverage
-#        - sonar-scanner
     - stage: deploy
       node_js:
         - "lts/*"
@@ -49,6 +38,9 @@ jobs:
         - "linux"
       script:
         - npm run build
+        - npm run bundlesize
+        - npm run coverage
+        - sonar-scanner
       deploy:
         skip_cleanup: true
         provider: npm
