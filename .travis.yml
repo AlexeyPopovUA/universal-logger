@@ -12,22 +12,16 @@ cache:
     - ".scannerwork"
     - "${TRAVIS_HOME}/.sonarscanner/"
 
-#stages:
-#  - compile
-#  - test
-#  - name: deploy
-#    if: branch = master
-
 jobs:
   include:
-    - name: compile
+    - stage: compile
       script:
         - npm run type-check
       node_js:
         - "lts/*"
         os:
           - "linux"
-    - name: test
+    - stage: test
       script:
         - npm run test
         - npm run build
