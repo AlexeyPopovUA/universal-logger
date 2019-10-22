@@ -21,27 +21,27 @@ cache:
 
 jobs:
   include:
-    - name: lint
-      node_js:
-        - "lts/*"
-        os:
-          - "linux"
-      script:
-        - npm run type-check
+#    - name: lint
+#      node_js:
+#        - "lts/*"
+#        os:
+#          - "linux"
+#      script:
+#        - npm run type-check
     - name: test
       script:
         - npm run test
         - npm run build
-    - name: analyse
-      node_js:
-        - "lts/*"
-        os:
-          - "linux"
-      script:
-        - npm run build
-        - npm run bundlesize
-        - npm run coverage
-        - sonar-scanner
+#    - name: analyse
+#      node_js:
+#        - "lts/*"
+#        os:
+#          - "linux"
+#      script:
+#        - npm run build
+#        - npm run bundlesize
+#        - npm run coverage
+#        - sonar-scanner
     - stage: deploy
       node_js:
         - "lts/*"
