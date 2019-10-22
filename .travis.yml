@@ -12,11 +12,11 @@ cache:
     - ".scannerwork"
     - "${TRAVIS_HOME}/.sonarscanner/"
 
-stages:
-  - compile
-  - test
-  - name: deploy
-    if: branch = master
+#stages:
+#  - compile
+#  - test
+#  - name: deploy
+#    if: branch = master
 
 jobs:
   include:
