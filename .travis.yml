@@ -13,12 +13,17 @@ cache:
 
 jobs:
   include:
-    - script:
-      - npm run type-check
-      - npm run coverage
-      - npm run build
+    - stage: test
+      script:
+        - npm run type-check
+        - npm run coverage
+        - npm run build
     - stage: deploy
       script: skip
+      node_js:
+        - "lts/*"
+      os:
+        - "linux"
       deploy:
         skip_cleanup: true
         provider: npm
