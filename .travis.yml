@@ -12,6 +12,13 @@ cache:
     - ".scannerwork"
     - "${TRAVIS_HOME}/.sonarscanner/"
 
+stages:
+  - compile
+  - test
+  - analyse
+  - name: deploy
+    if: branch = master
+
 jobs:
   include:
     - stage: compile
@@ -25,7 +32,7 @@ jobs:
       script:
         - npm run test
         - npm run build
-    - stage: deploy
+    - stage: analyse
       node_js:
         - "lts/*"
       os:
@@ -35,6 +42,12 @@ jobs:
         - npm run bundlesize
         - npm run coverage
         - sonar-scanner
+    - stage: deploy
+      node_js:
+        - "lts/*"
+      os:
+        - "linux"
+      script: skip
       deploy:
         skip_cleanup: true
         provider: npm
