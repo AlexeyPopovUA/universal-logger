@@ -80,7 +80,7 @@
     "eslint-import-resolver-webpack": "0.12.2",
     "eslint-loader": "4.0.2",
     "eslint-plugin-import": "2.22.0",
-    "eslint-plugin-jest": "23.20.0",
+    "eslint-plugin-jest": "24.1.3",
     "flowgen": "1.11.0",
     "husky": "4.2.5",
     "jest": "26.4.2",
