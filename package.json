@@ -81,7 +81,7 @@
     "eslint-loader": "4.0.2",
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-jest": "23.20.0",
-    "flowgen": "1.11.0",
+    "flowgen": "1.13.0",
     "husky": "4.2.5",
     "jest": "26.4.2",
     "rimraf": "3.0.2",
